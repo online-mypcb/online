@@ -1,1 +1,84 @@
-<div style="font-size:50px">This site is code testing site. please do not click this.</div>
+공부와 테스트 목적을 명확히 전달하면서도, 보안이나 저작권 측면에서 경고를 줄 수 있는 디자인과 문구를 준비했습니다.
+
+index.html 파일을 만드실 때 아래 코드를 전체 복사해서 사용해 보세요. 화면 정중앙에 빨간색 경고 아이콘과 함께 엄중하고 정중한 영어 문구가 나타납니다.
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strict Warning - Authorized Access Only</title>
+    <style>
+        /* 화면 중앙 정렬을 위한 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .warning-container {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            background: white;
+            border: 2px solid #dc3545;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 50px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #dc3545;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .legal-notice {
+            font-size: 14px;
+            color: #666;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="warning-container">
+        <div class="icon">⚠️</div>
+        <h1>Strict Notice</h1>
+        
+        <p>This website is created solely for <strong>testing and educational purposes</strong>.</p>
+        
+        <p>You are strictly prohibited from using, redistributing, or exploiting any content or code from this site for any other purpose.</p>
+        
+        <p style="color: #dc3545; font-weight: bold;">DO NOT PROCEED ANY FURTHER.</p>
+
+        <div class="legal-notice">
+            Please be advised that any unauthorized use or malicious activity may lead to <strong>legal consequences</strong> under applicable laws.
+        </div>
+    </div>
+
+</body>
+</html>
