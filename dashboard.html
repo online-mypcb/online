@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Service</title>
+    <link rel="stylesheet" href="dashboard_styles.css">
+</head>
+<body>
+
+    <div id="overlay" class="overlay hidden"></div>
+	<nav id="sideMenu" class="side-menu">
+		<div class="menu-header">
+			<div class="welcome-text">Welcome, DONG</div>
+			<div class="last-login">Last login: 01/19/2026 11:48 PM PST</div>
+			<button class="btn-new-account">Open New Account</button>
+		</div>
+		
+		<ul class="menu-list">
+			<li>Accounts <span class="arrow">▼</span></li>
+			<li>Move Money <span class="arrow">▼</span></li>
+			<li>Self Service <span class="arrow">▼</span></li>
+			<li>Additional Services <span class="arrow">▼</span></li>
+		</ul>
+
+		<div class="menu-footer">
+			<a href="#" id="signOutBtn">🔓 Sign Out</a>
+		</div>
+	</nav>
+	
+	<div id="signOutModal" class="modal-overlay hidden">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="warning-icon">⚠️</div>
+				<p class="modal-text">Are you sure you want to Sign Out?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirmSignOut" class="btn-ok">Ok</button>
+				<button id="cancelSignOut" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+    <header class="main-header">
+		<div class="header-left">
+			<img src="images/header-left.png" id="menuOpenBtn" alt="Menu">
+		</div>
+		<div class="header-center">
+			<img src="images/header-center.png" alt="CB Logo">
+		</div>
+		<div class="header-right">
+			<img src="images/header-right.png" alt="Notification">
+		</div>
+	</header>
+
+    <main>
+        <div class="display-options-row">
+            <a href="display-options-page.html" class="display-options-link">
+                👁️ Display Options
+            </a>
+            <a href="javascript:window.print()" class="print-btn" title="인쇄">
+                🖨️
+            </a>
+        </div>
+
+        <div class="account-card">
+            <a href="account-detail.html" class="account-main-link">
+                <div class="account-header">
+                    <div class="account-info">
+                        <div class="account-name">DONG MIN SHIN</div>
+                        <div class="account-number">*3537</div>
+                    </div>
+                    <div class="account-balance">
+                        <div class="balance-amount">$300.00</div>
+                        <div class="balance-label">Available Balance</div>
+                    </div>
+                </div>
+            </a>
+            
+            <div class="account-actions">
+                <a href="transfer.html">🔄 Transfer</a>
+                <a href="documents.html">📄 Documents</a>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <img src="images/banner-image.png" alt="Enroll in Personal Finance" class="promo-banner-img">
+            
+            <div class="promo-content">
+                <p class="promo-description">
+                    Personal Finance helps you easily and securely view all your accounts, from multiple financial institutions, in one place.<br>
+                    <strong>With this free tool, you can:</strong>
+                </p>
+                
+                <ul class="promo-list">
+                    <li>Track spending</li>
+                    <li>Create budgets</li>
+                    <li>Pay off debts efficiently</li>
+                    <li>Save for your goals</li>
+                    <li>And more!</li>
+                </ul>
+
+                <a href="get-started.html" class="btn-get-started">Get Started</a>
+            </div>
+        </div>
+		
+		<div class="btn-scam-protect">
+			<a href="scam-protect.html">
+				Protect Yourself from Scams
+			</a>
+		</div>
+    </main>
+	 <script src="dashboard_script.js"></script>
+</body>
+</html>

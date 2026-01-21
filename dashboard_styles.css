@@ -1,0 +1,338 @@
+/* 기본 스타일 초기화 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
+            color: #333;
+        }
+
+        /* 1. 고정 헤더 영역 */
+        header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 92px; /* 유지하고 싶으신 높이 */
+			background: white;
+			border-bottom: 1px solid #ddd;
+			display: flex;
+			align-items: center;
+			justify-content: space-between; /* 좌, 중, 우 간격 정렬 */
+			z-index: 1000;
+		}
+
+		/* 좌, 중, 우 각 컨테이너 */
+		.header-left, .header-center, .header-right {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 중앙 로고 영역을 더 넓게 설정 */
+		.header-left {
+			width: 20%; /* 좌우 아이콘 영역 */
+		}
+		.header-right {
+			width: 13%; /* 좌우 아이콘 영역 */
+		}
+		.header-center {
+			width: 67%; /* 중앙 로고 영역 */
+		}
+
+		/* 모든 이미지를 부모 박스에 100% 맞춤 */
+		header img {
+			width: 100%;
+			height: 100%;
+			object-fit: fill; /* 꽉 채우기 위해 fill 또는 contain 사용 */
+			display: block;
+		}
+
+        /* 2. 메인 컨텐츠 영역 (헤더 높이만큼 여백 부여) */
+        main {
+            padding-top: 100px;
+            max-width: 450px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+		
+		/* 오버레이 (배경 어둡게) */
+		.overlay {
+			position: fixed;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 1500;
+			transition: opacity 0.3s ease;
+		}
+
+		/* 사이드 메뉴 기본 상태 (왼쪽 밖으로 숨김) */
+		.side-menu {
+			position: fixed;
+			top: 0; left: -280px; /* 메뉴 너비만큼 왼쪽으로 */
+			width: 280px; height: 100%;
+			background: white;
+			z-index: 2000;
+			transition: left 0.3s ease; /* 슬라이딩 애니메이션 */
+			box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+			display: flex;
+			flex-direction: column;
+		}
+
+		/* 메뉴 활성화 상태 */
+		.side-menu.active {
+			left: 0;
+		}
+
+		/* 메뉴 내부 스타일 */
+		.menu-header { padding: 30px 20px; border-bottom: 1px dashed #ccc; }
+		.welcome-text { font-size: 18px; color: #1a3a6d; font-weight: bold; margin-bottom: 5px; }
+		.last-login { font-size: 12px; color: #666; margin-bottom: 20px; }
+		.btn-new-account { 
+			width: 100%; padding: 10px; border: 1px solid #1a3a6d; 
+			background: white; color: #1a3a6d; border-radius: 20px; font-weight: bold;
+		}
+
+		.menu-list { list-style: none; padding: 0; margin: 0; }
+		.menu-list li { 
+			padding: 18px 20px; border-bottom: 1px solid #eee; 
+			color: #1a3a6d; font-weight: 500; display: flex; justify-content: space-between; 
+		}
+
+		.menu-footer { margin-top: auto; padding: 25px 20px; border-top: 1px solid #eee; }
+		.menu-footer a { text-decoration: none; color: #1a3a6d; font-size: 16px; }
+
+		.menu-icon { width: 25px; cursor: pointer; padding: 15px; }
+		.hidden { display: none !important; }
+
+        /* 상단 옵션 & 프린트 아이콘 */
+        .display-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .display-options-link {
+            text-decoration: none;
+            color: #2c5ba9;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .print-btn {
+            text-decoration: none;
+            padding: 8px;
+            background: white;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 계정 카드 (DONG) */
+        .account-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .account-main-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            padding: 20px;
+        }
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .account-name {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .account-balance {
+            text-align: right;
+        }
+        .balance-amount {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .balance-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 카드 하단 링크 (Transfer, Documents) */
+        .account-actions {
+            display: flex;
+            border-top: 1px dashed #ccc;
+        }
+        .account-actions a {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            text-decoration: none;
+            color: #2c5ba9;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .account-actions a:first-child {
+            border-right: 1px dashed #ccc;
+        }
+
+        /* 프로모션 배너 (Personal Finance) */
+        .promo-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden; /* 이미지가 모서리를 넘어가지 않게 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 상단 배너 이미지 */
+        .promo-banner-img {
+            width: 100%;
+            display: block;
+        }
+
+        /* 텍스트 컨텐츠 영역 */
+        .promo-content {
+            padding: 25px;
+            color: #444;
+        }
+
+        .promo-description {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .promo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .promo-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .promo-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            font-weight: bold;
+        }
+
+        /* Get Started 버튼 */
+        .btn-get-started {
+            display: block;
+            background-color: #1a3a6d; /* 이미지와 유사한 짙은 남색 */
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        /* 하단 스캠 방지 버튼 */
+        .btn-scam-protect {
+           background: white;
+            border: 1px solid #ddd;
+            color: #2c5ba9;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+		
+		/* 모달 전체 배경 */
+		.modal-overlay {
+			position: fixed;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 3000; /* 사이드메뉴보다 위에 표시 */
+		}
+
+		/* 모달 박스 */
+		.modal-content {
+			background: white;
+			width: 85%;
+			max-width: 320px;
+			border-radius: 12px;
+			padding: 30px 20px;
+			text-align: center;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+		}
+
+		.modal-body { margin-bottom: 25px; }
+
+		/* 느낌표 아이콘 */
+		.warning-icon {
+			color: #e74c3c;
+			font-size: 40px;
+			margin-bottom: 15px;
+		}
+
+		.modal-text {
+			font-size: 16px;
+			font-weight: bold;
+			color: #333;
+			line-height: 1.4;
+		}
+
+		/* 버튼 스타일 */
+		.modal-footer {
+			display: flex;
+			flex-direction: column; /* 버튼을 세로로 배치 */
+			gap: 10px;
+		}
+
+		.btn-ok {
+			background: #1a3a6d;
+			color: white;
+			border: none;
+			padding: 12px;
+			border-radius: 25px;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.btn-cancel {
+			background: white;
+			color: #1a3a6d;
+			border: 1px solid #1a3a6d;
+			padding: 12px;
+			border-radius: 25px;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.hidden { display: none !important; }

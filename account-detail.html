@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Service</title>
+    <link rel="stylesheet" href="account-detail_styles.css">
+</head>
+<body>
+	<div id="overlay" class="overlay hidden"></div>
+	<nav id="sideMenu" class="side-menu">
+		<div class="menu-header">
+			<div class="welcome-text">Welcome, DONG</div>
+			<div class="last-login">Last login: 01/19/2026 11:48 PM PST</div>
+			<button class="btn-new-account">Open New Account</button>
+		</div>
+		
+		<ul class="menu-list">
+			<li>Accounts <span class="arrow">▼</span></li>
+			<li>Move Money <span class="arrow">▼</span></li>
+			<li>Self Service <span class="arrow">▼</span></li>
+			<li>Additional Services <span class="arrow">▼</span></li>
+		</ul>
+
+		<div class="menu-footer">
+			<a href="#" id="signOutBtn">🔓 Sign Out</a>
+		</div>
+	</nav>
+	
+	<div id="signOutModal" class="modal-overlay hidden">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="warning-icon">⚠️</div>
+				<p class="modal-text">Are you sure you want to Sign Out?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirmSignOut" class="btn-ok">Ok</button>
+				<button id="cancelSignOut" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+    <header class="main-header">
+		<div class="header-left">
+			<img src="images/header-left.png" id="menuOpenBtn" alt="Menu">
+		</div>
+		<div class="header-center">
+			<img src="images/header-center.png" alt="CB Logo">
+		</div>
+		<div class="header-right">
+			<img src="images/header-right.png" alt="Notification">
+		</div>
+	</header>
+
+    <main>
+        <section class="account-card detail-card">
+            <div class="account-header">
+                <div class="title-row">
+                    <h2>DONG MIN SHIN</h2>
+                    <button class="expand-btn">▼</button>
+                </div>
+                <div class="sub-info">DONG MIN SHIN<br> *3537 👁️</div>
+                <div class="balance-section">
+                    <div class="balance-amount">$300.00</div>
+                    <div class="balance-label">Available balance ⓘ</div>
+                </div>
+            </div>
+
+            <div class="account-actions">
+                <a href="transfer.html">🔄 Transfer</a>
+                <a href="documents.html">📄 Documents</a>
+            </div>
+
+            <div class="summary-toggle-area">
+                <button id="toggleSummaryBtn">Show Account Summary</button>
+            </div>
+
+            <div id="accountSummary" class="summary-content hidden">
+                <div class="summary-row"><span>Available Balance:</span> <strong>$300.00</strong></div>
+                <div class="summary-row"><span>Current Balance:</span> <strong>$300.00</strong></div>
+                <div class="summary-row"><span>As Of:</span> <strong id="asOfDate"></strong></div>
+                <div class="summary-row"><span>Interest Paid YTD:</span> <strong>$0.00</strong></div>
+                <div class="summary-row"><span>Interest Rate:</span> <strong>0%</strong></div>
+                <div class="summary-row"><span>Interest Accrued:</span> <strong>$0.00</strong></div>
+                <div class="summary-row"><span>Last Deposit Amount:</span> <strong>$20.00</strong></div>
+            </div>
+        </section>
+
+        <section class="transaction-section">
+            <div class="section-header">
+                <h3>Pending Transactions</h3>
+                <button class="icon-btn">🖨️</button>
+            </div>
+            <div class="no-records">No Records Available</div>
+        </section>
+
+        <section class="transaction-section">
+			<div class="section-header">
+				<h3>Posted Transactions</h3>
+				<button id="searchToggleBtn" class="icon-btn">🔍</button>
+			</div>
+
+			<div id="searchFilter" class="search-filter-box hidden">
+				<div class="filter-group">
+					<label>Time Period</label>
+					<select id="timeSelect">
+						<option value="Current statement">Current statement</option>
+						<option value="All">All</option>
+						<option value="Yesterday">Yesterday</option>
+						<option value="30 Day View" selected>30 Day View</option>
+						<option value="45 Day View">45 Day View</option>
+						<option value="60 Day View">60 Day View</option>
+						<option value="90 Day View">90 Day View</option>
+					</select>
+				</div>
+				<div class="filter-group">
+					<label>Type</label>
+					<select id="typeSelect">
+						<option value="All">All</option>
+						<option value="Checks">Checks</option>
+						<option value="Deposits">Deposits</option>
+						<option value="Withdrawals">Withdrawals</option>
+					</select>
+				</div>
+				<div class="filter-group">
+					<label>Transaction</label>
+					<select id="transSelect">
+						<option value="All">All</option>
+						<option value="All">Specific Amount</option>
+					</select>
+				</div>
+				<button id="searchSubmitBtn" class="search-submit">Search</button>
+				<button id="searchCancelBtn" class="search-cancel">Cancel</button>
+			</div>
+
+			<div id="searchedByBox" class="searched-by-container hidden">
+				<div class="searched-by-header">
+					<strong>Searched By:</strong>
+					<div class="searched-by-actions">
+						<span id="clearBtn">ⓧ Clear</span>
+						<span id="modifyBtn">📝 Modify</span>
+					</div>
+				</div>
+				<div class="searched-by-details">
+					<p>Time Period: <span id="resTime">All</span></p>
+					<p>Type: <span id="resType">All</span></p>
+					<p>Transaction: <span id="resTrans">All</span></p>
+					<p>Entries : <span id="resCount">0</span></p>
+				</div>
+			</div>
+
+			<div id="transactionList">
+				<div class="transaction-item" data-default="true" data-time="30 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0WCHJ4YC DONGMIN SHIN</span><br><small>01/07/2026</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$300.00</small></div>
+				</div>
+				
+				
+				
+				
+				<div class="transaction-item hidden" data-time="45 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0WCHJ4YC DONGMIN SHIN</span><br><small>01/07/2026</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$300.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="45 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VY385Y4 DONGMIN SHIN</span><br><small>12/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$280.00</small></div>
+				</div>
+				
+				
+				
+				
+				<div class="transaction-item hidden" data-time="60 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0WCHJ4YC DONGMIN SHIN</span><br><small>01/07/2026</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$300.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="60 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VY385Y4 DONGMIN SHIN</span><br><small>12/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$280.00</small></div>
+				</div>
+				
+				
+				
+				<div class="transaction-item hidden" data-time="90 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0WCHJ4YC DONGMIN SHIN</span><br><small>01/07/2026</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$300.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="90 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VY385Y4 DONGMIN SHIN</span><br><small>12/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$280.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="90 Day View" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VKW5SCN DONGMIN SHIN</span><br><small>11/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$260.00</small></div>
+				</div>
+				
+				
+				
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0WCHJ4YC DONGMIN SHIN</span><br><small>01/07/2026</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$300.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VY385Y4 DONGMIN SHIN</span><br><small>12/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$280.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0VKW5SCN DONGMIN SHIN</span><br><small>11/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$260.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0V6KNRZQ DONGMIN SHIN</span><br><small>10/08/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$240.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0TSFLPV3 DONGMIN SHIN</span><br><small>09/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$220.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0TF57RPY DONGMIN SHIN</span><br><small>08/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$200.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0T26372Y DONGMIN SHIN</span><br><small>07/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$180.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0SNG4RCM DONGMIN SHIN</span><br><small>06/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$160.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0S9D9M2N DONGMIN SHIN</span><br><small>05/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$140.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0RWTDQTC DONGMIN SHIN</span><br><small>04/09/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$120.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0RJRYBJM DONGMIN SHIN</span><br><small>03/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$100.00</small></div>
+				</div>
+				<div class="transaction-item hidden" data-time="All" data-type="Deposits" data-trans="All">
+					<div class="item-left"><strong>WELLS FARGO IFI/DDA TO DDA</strong><br><span>FP0R6Z3RZX DONGMIN SHIN</span><br><small>02/07/2025</small></div>
+					
+					<div class="item-right"><strong>$20.00</strong><br><small>$80.00</small></div>
+				</div>
+			</div>
+			
+			<div id="noRecordsMessage" class="hidden" style="text-align: center; padding: 40px 20px; color: #333; font-weight: bold; font-size: 16px;">
+				No Records Available
+			</div>
+			
+			
+		</section>
+    </main>
+
+    <script src="account-detail_script.js"></script>
+</body>
+</html>
