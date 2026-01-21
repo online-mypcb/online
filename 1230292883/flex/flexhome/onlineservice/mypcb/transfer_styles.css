@@ -172,165 +172,128 @@
 		.menu-icon { width: 25px; cursor: pointer; padding: 15px; }
 		.hidden { display: none !important; }
 
-        /* 상단 옵션 & 프린트 아이콘 */
-        .display-options-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .display-options-link {
-            text-decoration: none;
-            color: #2c5ba9;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .print-btn {
-            text-decoration: none;
-            padding: 8px;
-            background: white;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
 
-        /* 계정 카드 (DONG) */
-        .account-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .account-main-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            padding: 20px;
-        }
-        .account-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .account-name {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .account-balance {
-            text-align: right;
-        }
-        .balance-amount {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .balance-label {
-            font-size: 12px;
-            color: #666;
-        }
+		/* 전체를 감싸는 영역 */
+.tab-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    width: 100%;
+    overflow: hidden; /* 영역 밖 메뉴 숨김 */
+}
 
-        /* 카드 하단 링크 (Transfer, Documents) */
-        .account-actions {
-            display: flex;
-            border-top: 1px dashed #ccc;
-        }
-        .account-actions a {
-            flex: 1;
-            text-align: center;
-            padding: 12px 0;
-            text-decoration: none;
-            color: #2c5ba9;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .account-actions a:first-child {
-            border-right: 1px dashed #ccc;
-        }
+/* 메뉴가 보이는 실제 창 */
+.tab-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
 
-        /* 프로모션 배너 (Personal Finance) */
-        .promo-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            overflow: hidden; /* 이미지가 모서리를 넘어가지 않게 */
-            display: flex;
-            flex-direction: column;
-        }
+/* 메뉴 항목들을 한 줄로 길게 세우는 곳 */
+.tab-inner {
+    display: flex;
+    transition: transform 0.4s ease-out;
+    padding: 0;
+    width: max-content; /* 내부 내용만큼 너비를 무한히 확장 */
+}
 
-        /* 상단 배너 이미지 */
-        .promo-banner-img {
-            width: 100%;
-            display: block;
-        }
+.tab-item {
+    padding: 15px 20px;
+    font-size: 14px;
+    white-space: nowrap; 
+    flex-shrink: 0; /* 글자가 절대 줄어들거나 잘리지 않음 */
+}
 
-        /* 텍스트 컨텐츠 영역 */
-        .promo-content {
-            padding: 25px;
-            color: #444;
-        }
+/* 마지막 메뉴 뒤에 여백을 주어 화살표와 겹치지 않게 함 */
+.tab-item:last-child {
+    padding-right: 40px; 
+}
 
-        .promo-description {
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #555;
-        }
+/* Make Transfer 강조 (파란색 바) */
+.tab-item.active {
+    color: #1a3a6d;
+    font-weight: bold;
+    border-bottom: 3px solid #1a3a6d;
+}
 
-        .promo-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-        }
+/* 화살표 버튼 */
+.nav-arrow {
+    background: #fff;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    color: #333;
+}
 
-        .promo-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
 
-        .promo-list li::before {
-            content: "•";
-            position: absolute;
-            left: 5px;
-            font-weight: bold;
-        }
+        
+		.transfer-container { padding: 40; background: white; }
+		.page-title { color: #1a3a6d; font-size: 24px; margin-bottom: 20px; }
 
-        /* Get Started 버튼 */
-        .btn-get-started {
-            display: block;
-            background-color: #1a3a6d; /* 이미지와 유사한 짙은 남색 */
-            color: white;
-            text-align: center;
-            padding: 14px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            margin: 0 auto;
-            width: 80%;
-        }
+		/* 입력 폼 스타일 */
+		.transfer-form { display: flex; flex-direction: column; gap: 15px; }
 
-        /* 하단 스캠 방지 버튼 */
-        .btn-scam-protect {
-           background: white;
-            border: 1px solid #ddd;
-            color: #2c5ba9;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 40px;
-        }
+		.input-group label {
+			display: block; font-size: 12px; color: #666; margin-bottom: 5px;
+		}
+
+		.select-box, .text-input {
+			width: 100%; padding: 12px; border: 1px solid #ccc;
+			border-radius: 4px; display: flex; justify-content: space-between;
+			align-items: center; font-size: 15px; box-sizing: border-box;
+		}
+
+		.placeholder { color: #999; }
+		.account-name { font-weight: bold; color: #333; }
+		.balance { color: #333; margin-left: 5px; }
+		.down-arrow { font-size: 10px; color: #666; }
+
+		.btn-add-account {
+			background: none; border: none; color: #1a3a6d;
+			font-weight: bold; cursor: pointer; display: flex;
+			align-items: center; gap: 5px; font-size: 15px; width: fit-content;
+		}
+
+		/* 날짜 선택 섹션 */
+		.date-section { margin-top: 10px; }
+		.section-title { font-size: 16px; color: #333; margin-bottom: 5px; }
+		.section-sub { font-size: 13px; color: #666; margin-bottom: 15px; }
+
+		.radio-container {
+			display: flex; align-items: center; gap: 10px;
+			margin-bottom: 15px; cursor: pointer; font-size: 15px;
+		}
+
+		/* 커스텀 라디오 버튼 */
+		.radio-mark {
+			width: 20px; height: 20px; border: 2px solid #ccc;
+			border-radius: 50%; display: inline-block; position: relative;
+		}
+		input[type="radio"]:checked + .radio-mark {
+			border-color: #1a3a6d;
+		}
+		input[type="radio"]:checked + .radio-mark::after {
+			content: ""; position: absolute; top: 4px; left: 4px;
+			width: 12px; height: 12px; background: #1a3a6d; border-radius: 50%;
+		}
+		input[type="radio"] { display: none; }
+
+		/* 하단 버튼 */
+		.btn-continue {
+			background: #1a3a6d; color: white; border: none;
+			padding: 15px; border-radius: 25px; font-size: 16px;
+			font-weight: bold; cursor: pointer; margin-top: 10px;
+		}
+
+        
+		
+		
+		
+		
+		
 		
 		/* 모달 전체 배경 */
 		.modal-overlay {

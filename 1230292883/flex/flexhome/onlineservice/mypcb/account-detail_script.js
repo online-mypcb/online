@@ -26,6 +26,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const signOutModal = document.getElementById('signOutModal');
     const confirmSignOut = document.getElementById('confirmSignOut');
     const cancelSignOut = document.getElementById('cancelSignOut');
+	
+	const eyeIcon = document.getElementById('eyeIcon');
+    const infoPopup = document.getElementById('accountInfoPopup');
+	
+	// 1. Last login 시간 설정 (현재 시간 2026-01-21 11:08 기준 5분 전)
+    const lastLoginElement = document.querySelector('.last-login');
+    if (lastLoginElement) {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - 5); // 5분 전
+
+        // 날짜 형식: 01/21/2026 11:03 AM
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const year = now.getFullYear();
+        
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0시는 12시로 표시
+        const strTime = String(hours).padStart(2, '0') + ':' + minutes + ' ' + ampm;
+
+        lastLoginElement.textContent = `Last login: ${month}/${day}/${year} ${strTime} PST`;
+    }
 
     // --- 2. 초기 로딩 설정 ---
     function initPage() {
@@ -183,6 +207,62 @@ document.addEventListener('DOMContentLoaded', () => {
             signOutModal.classList.add('hidden');
         });
     }
+	
+	// 2. Accounts 메뉴 클릭 이벤트 (토글 방식)
+    const accountsLi = document.querySelector('.menu-list li:first-child');
+    if (accountsLi) {
+        // 하위 메뉴 구조 삽입 (기본적으로 숨김 상태)
+        const subMenuHtml = `
+			<ul class="sub-menu">
+				<li><a href="dashboard.html">Overview</a></li>
+				<li><a href="account-detail.html">Detail</a></li>
+				<li><a href="documents.html">Documents</a></li>
+				<li><a href="download_list.html">Reports</a></li>
+			</ul>
+		`;
+        accountsLi.insertAdjacentHTML('beforeend', subMenuHtml);
+
+        const subMenu = accountsLi.querySelector('.sub-menu');
+
+        // Accounts 항목 클릭 시 동작
+        accountsLi.addEventListener('click', (e) => {
+            // 하위 메뉴 자체를 클릭했을 때는 닫히지 않도록 방지
+            if (e.target.closest('.sub-menu')) return;
+
+            const isActive = accountsLi.classList.toggle('active');
+            
+            if (isActive) {
+                subMenu.style.maxHeight = subMenu.scrollHeight + "px"; // 부드럽게 열기
+            } else {
+                subMenu.style.maxHeight = "0"; // 부드럽게 닫기
+            }
+        });
+    }
+	
+	if (eyeIcon && infoPopup) {
+        eyeIcon.addEventListener('click', () => {
+            // 팝업 숨김 여부 확인
+            const isHidden = infoPopup.classList.contains('hidden');
+
+            if (isHidden) {
+                // 팝업 열기
+                infoPopup.classList.remove('hidden');
+                eyeIcon.src = 'images/eye-off2.png'; // 팝업 떴을 때 이미지
+            } else {
+                // 팝업 닫기
+                infoPopup.classList.add('hidden');
+                eyeIcon.src = 'images/eye-on.png'; // 팝업 닫혔을 때 이미지
+            }
+        });
+    }
+
+    // (선택 사항) 바탕을 클릭하면 팝업 닫기 기능
+    document.addEventListener('click', (e) => {
+        if (!eyeIcon.contains(e.target) && !infoPopup.contains(e.target)) {
+            infoPopup.classList.add('hidden');
+            eyeIcon.src = 'images/eye-on.png';
+        }
+    });
 
     // 페이지 시작
     initPage();

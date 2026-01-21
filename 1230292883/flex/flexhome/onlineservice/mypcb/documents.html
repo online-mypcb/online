@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Service</title>
+    <link rel="stylesheet" href="document_styles.css">
+</head>
+<body>
+
+    <div id="overlay" class="overlay hidden"></div>
+	<nav id="sideMenu" class="side-menu">
+		<div class="menu-header">
+			<div class="welcome-text">Welcome, DONG</div>
+			<div class="last-login">Last login: 01/19/2026 11:48 PM PST</div>
+			<button class="btn-new-account">Open New Account</button>
+		</div>
+		
+		<ul class="menu-list">
+			<li>Accounts <span class="arrow">▼</span></li>
+			<li>Move Money <span class="arrow">▼</span></li>
+			<li>Self Service <span class="arrow">▼</span></li>
+			<li>Additional Services <span class="arrow">▼</span></li>
+		</ul>
+
+		<div class="menu-footer">
+			<a href="#" id="signOutBtn">🔓 Sign Out</a>
+		</div>
+	</nav>
+	
+	<div id="signOutModal" class="modal-overlay hidden">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="warning-icon">⚠️</div>
+				<p class="modal-text">Are you sure you want to Sign Out?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirmSignOut" class="btn-ok">Ok</button>
+				<button id="cancelSignOut" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+    <header class="main-header">
+		<div class="header-left">
+			<img src="images/header-left.png" id="menuOpenBtn" alt="Menu">
+		</div>
+		<div class="header-center">
+			<img src="images/header-center.png" alt="CB Logo">
+		</div>
+		<div class="header-right">
+			<img src="images/header-right.png" alt="Notification">
+		</div>
+	</header>
+
+    <main class="container page-white">
+		<h1 class="page-title main-navy">Documents</h1>
+
+		<div class="tab-wrapper-static">
+			<div class="tab-item active">Statements</div>
+			<div class="tab-item">Delivery Settings</div>
+		</div>
+
+		<div class="doc-content-center">
+			<a href="download_list.html" class="view-statement-card">
+				<span class="card-text">View<br>Statement</span>
+			</a>
+		</div>
+		<div><br>
+			<font style="font-size:10pt">A new window should have opened to display your account statements. If you do not see this window, it maybe due to pop up blocker or scripting maybe disabled on your browser.<br><br>
+
+			If you have already closed the statement window, you may continue using online banking by selecting the menu item.<font>
+		</div>
+	</main>
+	<script src="dashboard_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Service</title>
+    <link rel="stylesheet" href="transfer_styles.css">
+</head>
+<body>
+
+    <div id="overlay" class="overlay hidden"></div>
+	<nav id="sideMenu" class="side-menu">
+		<div class="menu-header">
+			<div class="welcome-text">Welcome, DONG</div>
+			<div class="last-login">Last login: 01/19/2026 11:48 PM PST</div>
+			<button class="btn-new-account">Open New Account</button>
+		</div>
+		
+		<ul class="menu-list">
+			<li>Accounts <span class="arrow">▼</span></li>
+			<li>Move Money <span class="arrow">▼</span></li>
+			<li>Self Service <span class="arrow">▼</span></li>
+			<li>Additional Services <span class="arrow">▼</span></li>
+		</ul>
+
+		<div class="menu-footer">
+			<a href="#" id="signOutBtn">🔓 Sign Out</a>
+		</div>
+	</nav>
+	
+	<div id="signOutModal" class="modal-overlay hidden">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="warning-icon">⚠️</div>
+				<p class="modal-text">Are you sure you want to Sign Out?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirmSignOut" class="btn-ok">Ok</button>
+				<button id="cancelSignOut" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+    <header class="main-header">
+		<div class="header-left">
+			<img src="images/header-left.png" id="menuOpenBtn" alt="Menu">
+		</div>
+		<div class="header-center">
+			<img src="images/header-center.png" alt="CB Logo">
+		</div>
+		<div class="header-right">
+			<img src="images/header-right.png" alt="Notification">
+		</div>
+	</header>
+
+<main class="transfer-container">
+    <h1 class="page-title">Transfer</h1>
+
+    <div class="tab-scroll-wrapper">
+		<button class="nav-arrow" id="prevTab" style="visibility: hidden;">&lt;</button>
+		
+		<div class="tab-viewport">
+			<div class="tab-inner" id="tabContainer">
+				<div class="tab-item active">Make Transfer</div>
+				<div class="tab-item">Activity</div>
+				<div class="tab-item">History</div>
+				<div class="tab-item">Manage Templates</div>
+				<div class="tab-item">Manage Account</div>
+			</div>
+		</div>
+
+		<button class="nav-arrow" id="nextTab">&gt;</button>
+	</div>
+
+    <div class="transfer-form">
+        <div class="input-group">
+            <label>Transfer From</label>
+            <div class="select-box">
+                <span class="placeholder">Transfer From</span>
+                <span class="down-arrow">▼</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Transfer To</label>
+            <div class="select-box">
+                <span class="placeholder">Transfer To</span>
+                <span class="down-arrow">▼</span>
+            </div>
+        </div>
+
+        <button class="btn-add-account">+ Add Accounts</button>
+
+        <div class="input-group">
+            <input type="text" placeholder="Amount" class="text-input">
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="Description (Optional)" class="text-input">
+        </div>
+
+        <div class="input-group">
+            <label>Frequency</label>
+            <div class="select-box">
+                <span>Once</span>
+                <span class="down-arrow">▼</span>
+            </div>
+        </div>
+
+        <div class="date-section">
+            <h3 class="section-title">Transfer Dates</h3>
+            <p class="section-sub">When would you like the transfers to start?</p>
+            
+            <label class="radio-container">
+                <input type="radio" name="transferDate" checked>
+                <span class="radio-mark"></span>
+                Transfer Now
+            </label>
+
+            <label class="radio-container">
+                <input type="radio" name="transferDate">
+                <span class="radio-mark"></span>
+                Select Transfer Date
+            </label>
+        </div>
+
+        <button class="btn-continue">Continue</button>
+    </div>
+</main>
+
+	 <script src="dashboard_script.js"></script>
+	 <script src="transfer_script.js"></script>
+</body>
+</html>

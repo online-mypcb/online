@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Service</title>
+    <link rel="stylesheet" href="document_styles.css">
+</head>
+<body>
+
+    <div id="overlay" class="overlay hidden"></div>
+	<nav id="sideMenu" class="side-menu">
+		<div class="menu-header">
+			<div class="welcome-text">Welcome, DONG</div>
+			<div class="last-login">Last login: 01/19/2026 11:48 PM PST</div>
+			<button class="btn-new-account">Open New Account</button>
+		</div>
+		
+		<ul class="menu-list">
+			<li>Accounts <span class="arrow">▼</span></li>
+			<li>Move Money <span class="arrow">▼</span></li>
+			<li>Self Service <span class="arrow">▼</span></li>
+			<li>Additional Services <span class="arrow">▼</span></li>
+		</ul>
+
+		<div class="menu-footer">
+			<a href="#" id="signOutBtn">🔓 Sign Out</a>
+		</div>
+	</nav>
+	
+	<div id="signOutModal" class="modal-overlay hidden">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="warning-icon">⚠️</div>
+				<p class="modal-text">Are you sure you want to Sign Out?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirmSignOut" class="btn-ok">Ok</button>
+				<button id="cancelSignOut" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+    <header class="main-header">
+		<div class="header-left">
+			<img src="images/header-left.png" id="menuOpenBtn" alt="Menu">
+		</div>
+		<div class="header-center">
+			<img src="images/header-center.png" alt="CB Logo">
+		</div>
+		<div class="header-right">
+			<img src="images/header-right.png" alt="Notification">
+		</div>
+	</header>
+
+    <main class="container">
+		<div class="list-header">
+			<div class="header-icons">
+				<span class="icon">🔍</span>
+				<span class="icon-blue">≡</span>
+			</div>
+		</div>
+
+		<div class="download-list bg-white">
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">1/15/26</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">12/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">11/14/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">10/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">9/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">8/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">7/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">6/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">5/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+			<div class="download-item">
+				<span class="download-icon">📥</span>
+				<div class="item-info">
+					<p class="name">DONG MIN SHIN *3537</p>
+					<p class="type">DDA</p>
+				</div>
+				<div class="item-date">
+					<p class="date">4/15/25</p>
+					<p class="desc">FOS DDA Statements</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-btn">
+			<button class="btn-load-more">Load More</button>
+		</div>
+
+
+		<footer class="version-info">
+			Version 25.1216.221036
+		</footer>
+	</main>
+	<script src="dashboard_script.js"></script>
+</body>
+</html>

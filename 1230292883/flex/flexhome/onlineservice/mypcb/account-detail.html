@@ -54,17 +54,26 @@
 
     <main>
         <section class="account-card detail-card">
-            <div class="account-header">
-                <div class="title-row">
-                    <h2>DONG MIN SHIN</h2>
-                    <button class="expand-btn">▼</button>
-                </div>
-                <div class="sub-info">DONG MIN SHIN<br> *3537 👁️</div>
-                <div class="balance-section">
-                    <div class="balance-amount">$300.00</div>
-                    <div class="balance-label">Available balance ⓘ</div>
-                </div>
-            </div>
+			<div class="account-header">
+				<div class="title-row">
+					<h2>DONG MIN SHIN</h2>
+					<button class="expand-btn">▼</button>
+				</div>
+				<div class="sub-info" style="position: relative;">
+					DONG MIN SHIN <br> 
+					*3537 
+					<img src="images/eye-on.png" id="eyeIcon" style="width: 14px; cursor: pointer; vertical-align: middle; margin-left: 5px;">
+					
+					<div id="accountInfoPopup" class="info-popup hidden">
+						<p>Account Number: 2123537</p>
+						<p>Routing Number: 122043602</p>
+					</div>
+				</div>
+				<div class="balance-section">
+					<div class="balance-amount">$300.00</div>
+					<div class="balance-label">Available balance ⓘ</div>
+				</div>
+			</div>
 
             <div class="account-actions">
                 <a href="transfer.html">🔄 Transfer</a>

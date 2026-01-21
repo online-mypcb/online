@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmSignOut = document.getElementById('confirmSignOut');
     const cancelSignOut = document.getElementById('cancelSignOut');
 	
-    // 1. Last login 시간 설정 (현재 시간 2026-01-21 11:08 기준 5분 전)
+	const tabContainer = document.getElementById('tabContainer');
+    const btnNext = document.getElementById('nextTab');
+    const btnPrev = document.getElementById('prevTab');
+	
+	// 1. Last login 시간 설정 (현재 시간 2026-01-21 11:08 기준 5분 전)
     const lastLoginElement = document.querySelector('.last-login');
     if (lastLoginElement) {
         const now = new Date();
@@ -62,6 +66,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cancelSignOut) {
         cancelSignOut.addEventListener('click', () => {
             signOutModal.classList.add('hidden');
+        });
+    }
+	
+	
+    if (btnNext && btnPrev && tabContainer) {
+        btnNext.addEventListener('click', () => {
+            // 전체 길이를 계산하여 끝까지 이동
+            const containerWidth = tabContainer.parentElement.offsetWidth;
+            const scrollWidth = tabContainer.scrollWidth;
+            const maxScroll = scrollWidth - containerWidth;
+
+            // 마지막 글자까지 보이도록 계산된 최대치만큼 이동
+            tabContainer.style.transform = `translateX(-${maxScroll}px)`;
+            
+            btnNext.style.visibility = 'hidden';
+            btnPrev.style.visibility = 'visible';
+        });
+
+        btnPrev.addEventListener('click', () => {
+            // 다시 처음 위치(0)로 복구
+            tabContainer.style.transform = `translateX(0px)`;
+            
+            btnPrev.style.visibility = 'hidden';
+            btnNext.style.visibility = 'visible';
         });
     }
 	
